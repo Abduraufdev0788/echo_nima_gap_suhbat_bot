@@ -1,4 +1,4 @@
-from handlers import start, lang_uz, main_menu
+from handlers import start, lang_uz, main_menu, comment_user, read_comment
 from telegram.ext import Updater, MessageHandler, Filters, CommandHandler 
 from telegram import update
 from config import TOKEN
@@ -10,6 +10,8 @@ def main()->None:
     dispatcher.add_handler(CommandHandler(['start', 'boshlash'], start))
     dispatcher.add_handler(MessageHandler(Filters.text("🇺🇿 O'zbekcha"),lang_uz ))
     dispatcher.add_handler(MessageHandler(Filters.contact, main_menu ))
+    dispatcher.add_handler(MessageHandler(Filters.text("✍️ Fikr qoldirish"), comment_user))
+    
 
 
     updater.start_polling()
